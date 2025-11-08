@@ -68,6 +68,7 @@ exports.login = async (req, res) => {
 
         const isPasswordValid = await bcrypt.compare(password, existingUser.password)
         if (!isPasswordValid) {
+            console.log('e')
             return res
             .status(400)
             .json({ message: 'Invalid username or password' })
@@ -82,7 +83,8 @@ exports.login = async (req, res) => {
             httpOnly: true,
             sameSite: 'None'
         })
-        
+        console.log('ee')
+
         return res
         .status(200)
         .json({ message: 'Success' })
