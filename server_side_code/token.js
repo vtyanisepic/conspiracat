@@ -10,7 +10,7 @@ module.exports.authenticateToken = async (req, res, next) => {
     const token = req.cookies['token']
 
     if (!token) {
-        return res.redirect('/login.html')
+        return res.redirect('/login')
     }
 
     jwt.verify(token, `${process.env.TOKEN_KEY}`, (err, user) => {
