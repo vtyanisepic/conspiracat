@@ -68,7 +68,6 @@ exports.login = async (req, res) => {
 
         const isPasswordValid = await bcrypt.compare(password, existingUser.password)
         if (!isPasswordValid) {
-            console.log('e')
             return res
             .status(400)
             .json({ message: 'Invalid username or password' })
@@ -76,14 +75,13 @@ exports.login = async (req, res) => {
 
         const token = await generateToken(existingUser._id)
         res.cookie('token', token, {
-            domain: 'localhost',
+            // domain: 'localhost',
             path: '/',
             expires: new Date(Date.now() + 3600000),
             secure: true,
             httpOnly: true,
             sameSite: 'None'
         })
-        console.log('ee')
 
         return res
         .status(200)
