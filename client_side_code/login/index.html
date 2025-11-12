@@ -55,8 +55,7 @@
                 document.querySelector('.error').style.display = 'block'
                 document.querySelector('.error').innerText = data.message
             } else {
-                document.querySelector('.error').style.display = 'none'
-                window.location.href = '/'
+                window.location.reload()
             }
         }
     </script>

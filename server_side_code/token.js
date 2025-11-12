@@ -10,16 +10,17 @@ module.exports.authenticateToken = async (req, res, next) => {
     const token = req.cookies['token']
 
     if (!token) {
-        return res.redirect('/login')
+        console.log('test1')
+        return next()
     }
 
     jwt.verify(token, `${process.env.TOKEN_KEY}`, (err, user) => {
         if (err) {
-            return res
-            .status(500)
-            .json({ message: 'Something went wrong, it\'s probably on our end. Sorry!' })
+            console.log('test2')
+            return next()
         }
 
+        console.log('test3')
         req.user = user
         next()
     })

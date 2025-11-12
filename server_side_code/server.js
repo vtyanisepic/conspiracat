@@ -1,5 +1,6 @@
 const express = require('express')
 const dotenv = require('dotenv')
+const path = require('path')
 const cookieParser = require('cookie-parser')
 const userRouter = require('./user.Routes')
 const { connectDB } = require('./database')
@@ -17,10 +18,16 @@ app.use(cookieParser())
 app.use('/api/user', userRouter)
 
 app.get('/', authenticateToken, (req, res) => {
-    res.send('Hello World!')
+    if (!req.user) return res.redirect('/login')
+    res.sendFile(path.resolve(__dirname + '/../client_side_code/index.html'))
 })
 
-app.use(express.static('client_side_code')) // why why why why why does this have to be below app.get :[ it's so UGLYYY
+app.get('/login', authenticateToken, (req, res) => {
+    if (req.user) return res.redirect('/')
+    res.sendFile(path.resolve(__dirname + '/../client_side_code/login/index.html'))
+})
+
+app.use(express.static('client_side_code/static')) 
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
