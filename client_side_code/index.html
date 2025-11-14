@@ -4,23 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conspiracat</title>
-    <link rel="stylesheet" href="/style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+        }
+
+        .top {
+            background: #0033cc;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            display: block;
+        }
+
+        .character {
+            width: 250px;
+            background: white;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="title"></div>
-        </header>
-        <aside>
-            hi
-        </aside>
-        <main>
-            hi
-        </main>
+    <b class="top">Conspiracat</b>
+    <div style="padding: 20px;">
+    <div class="character">
+        <h2 id="username"></h2>
+        Level <span id="level"></span> <span id="class"></span><br>
 
+        <h3>Stats</h3>
+        Muscle: <b><span id="muscle"></span></b><br>
+        Mysticality: <b><span id="mysticality"></span></b><br>
+        Moxie: <b><span id="moxie"></span></b><br>
+        <br>
+        HP: <span id="hpcurr"></span> / <span id="hpmax"></span><br>
+        MP: <span id="mpcurr"></span> / <span id="mpmax"></span><br>
+    </div>
     </div>
     <script>
-
+        window.onload = () => {
+            
+        }
     </script>
 </body>
 </html>

@@ -93,3 +93,9 @@ exports.login = async (req, res) => {
         .json({ message: 'Something went wrong, it\'s probably on our end. Sorry!' })
     }
 }
+
+// exports.userData = async (req, res) => {
+//     try {
+
+//     }
+// }
