@@ -27,6 +27,13 @@ header {
     font-size: 1.3em;
 }
 
+aside {
+    display: flex;
+    float: left;
+    background: #4a4a4a;
+    border: 1px solid #222;
+}
+
 main {
     display: flex;
     gap: 40px;
