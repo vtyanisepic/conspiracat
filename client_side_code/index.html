@@ -54,8 +54,14 @@
     </div>
     </div>
     <script>
+        async function test() {
+            const response = await fetch('/api/user/getuserdata', {
+                method: 'POST',
+            })
+            console.log(await response.json())
+        }
         window.onload = () => {
-            
+            test()
         }
     </script>
 </body>

@@ -7,10 +7,6 @@ exports.connectDB = async () => {
     try {
         await mongoose.connect(`mongodb+srv://vtyan5291:${process.env.MONGODB_PASS}@conspiracat.yz61xnb.mongodb.net/?appName=conspiracat`)
         console.log('MongoDB connected successfully')
-        await User.updateMany(
-            { paper: { $exists: false } },
-            { $set: { paper: 0 } }
-        )
     } catch (error) {
         console.log('MongoDB connection failed:', error)
     }

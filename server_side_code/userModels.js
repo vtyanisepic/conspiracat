@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
     paper: { type: Number, default: 0 },
     inventory: {
         type: Map,
-        of: Number
+        of: Number,
+        default: {}
     }
 })
 

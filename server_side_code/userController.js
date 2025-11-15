@@ -94,8 +94,17 @@ exports.login = async (req, res) => {
     }
 }
 
-// exports.userData = async (req, res) => {
-//     try {
-
-//     }
-// }
+exports.getUserData = async (req, res) => {
+    try {
+        const id = req.user.id
+        const user = await User.findOne({ _id: id }, { password: 0, __v: 0, _id: 0 })
+        return res
+        .status(200)
+        .json(user)
+    } catch (error) {
+        console.log(error.message)
+        return res
+        .status(500)
+        .json({ message: 'Something went wrong, it\'s probably on our end. Sorry!' })
+    }
+}
