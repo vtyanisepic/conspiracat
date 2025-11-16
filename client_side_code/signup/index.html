@@ -42,7 +42,7 @@
         <div class="sidebyside">
             <table>
                 <thead>
-                    <tr><td>Enter the game:</td></tr>
+                    <tr><td>Create an account:</td></tr>
                 </thead>
                 <tbody>
                     <tr><td>
@@ -50,38 +50,12 @@
                             <form>
                                 <input type="text" placeholder="Username" required><br>
                                 <input type="password" placeholder="Password" required><br>
-                                <button type="submit">Login</button>
+                                <button type="submit">Sign Up</button>
                             </form>
                         </center>
                     </td></tr>
                 </tbody>
             </table>
-            <table>
-                <thead>
-                    <tr><td>Announcements:</td></tr>
-                </thead>
-                <tbody>
-                    <tr><td>
-                        <center>
-                            None yet!
-                        </center>
-                    </td></tr>
-                </tbody>
-            </table>
-        </div>
-        <table>
-            <thead>
-                <tr><td>Sign Up:</td></tr>
-            </thead>
-            <tbody>
-                <tr><td>
-                    <center>
-                        Don't have an account? Create one! It's free!<br>
-                        <button onclick="window.location='/signup';">Play!</button>
-                    </center>
-                </td></tr>
-            </tbody>
-        </table>
     </center>
     <script>
         const username = document.querySelector('input[type="text"]')
@@ -91,7 +65,7 @@
         form.addEventListener('submit', login)
         async function login(e) {
             e.preventDefault()
-            const res = await fetch('/api/user/login', {
+            const res = await fetch('/api/user/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
