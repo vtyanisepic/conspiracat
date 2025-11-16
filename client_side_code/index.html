@@ -11,7 +11,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: #f5f5f5;
+            background: white;
             margin: 0;
         }
 
@@ -26,7 +26,7 @@
 
         .character {
             width: 250px;
-            background: white;
+            background: #f5f5f5;
             padding: 15px;
             border: 1px solid #ccc;
         }
@@ -35,33 +35,60 @@
             flex: 1;
             padding: 20px;
         }
+
+        .map {
+            position: relative;
+            display: inline-block;
+        }
+
+        .town {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+        }
     </style>
 </head>
 <body>
     <b class="top">Conspiracat</b>
-    <div style="padding: 20px;">
+    <div style="padding: 20px; display: flex; align-items: flex-start;">
     <div class="character">
         <h2 id="username"></h2>
         Level <span id="level"></span> <span id="class"></span><br>
 
         <h3>Stats</h3>
-        Muscle: <b><span id="muscle"></span></b><br>
-        Mysticality: <b><span id="mysticality"></span></b><br>
-        Moxie: <b><span id="moxie"></span></b><br>
+        Mettle: <b><span id="mettle"></span></b><br>
+        Panache: <b><span id="panache"></span></b><br>
+        Sagacity: <b><span id="sagacity"></span></b><br>
         <br>
         HP: <span id="hpcurr"></span> / <span id="hpmax"></span><br>
         MP: <span id="mpcurr"></span> / <span id="mpmax"></span><br>
     </div>
+    <div class="main">
+        <div class="map">
+            <img src="map_background.png"></img>
+            <img src="obvious_town.png" class="town" title="Obvious Town"></img>
+        </div>
+        
+    </div>
     </div>
     <script>
-        async function test() {
+        async function loadInfo() {
             const response = await fetch('/api/user/getuserdata', {
                 method: 'POST',
             })
-            console.log(await response.json())
+            const data = await response.json()
+
+            document.getElementById('level').innerText = data.level
+            document.getElementById('mettle').innerText = data.stats.mettle
+            document.getElementById('panache').innerText = data.stats.panache
+            document.getElementById('sagacity').innerText = data.stats.sagacity
+            document.getElementById('hpmax').innerText = data.hp.max
+            document.getElementById('hpcurr').innerText = data.hp.current
+            document.getElementById('mpmax').innerText = data.mp.max
+            document.getElementById('mpcurr').innerText = data.mp.current
         }
         window.onload = () => {
-            test()
+            loadInfo()
         }
     </script>
 </body>

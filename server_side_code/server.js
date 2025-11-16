@@ -27,7 +27,8 @@ app.get('/login', authenticateToken, (req, res) => {
     res.sendFile(path.resolve(__dirname + '/../client_side_code/login/index.html'))
 })
 
-app.use(express.static('client_side_code/static')) 
+app.use(express.static('client_side_code/static'))
+app.use(express.static('images')) 
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
