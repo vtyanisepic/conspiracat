@@ -22,7 +22,13 @@ const userSchema = new mongoose.Schema({
         type: Map,
         of: Number,
         default: {}
-    }
+    },
+    quests: {
+        type: Map,
+        of: [Number],
+        default: {}
+    },
+    completed_quests: { type: [String], default: [] }
 })
 
 const User = mongoose.model('User', userSchema)
