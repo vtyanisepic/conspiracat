@@ -12,7 +12,7 @@ exports.signUp = async (req, res) => {
             .json({ message: 'Username and password are required' })
         }
 
-        const existingUser = await User.findOne({ username })
+        const existingUser = await User.findOne({ username }, { password: 0, __v: 0, _id: 0 })
         if (existingUser) {
             return res
             .status(400)
@@ -59,7 +59,7 @@ exports.login = async (req, res) => {
             .json({ message: 'Username and password are required' })
         }
 
-        const existingUser = await User.findOne({ username })
+        const existingUser = await User.findOne({ username }, { password: 0, __v: 0, _id: 0 })
         if (!existingUser) {
             return res
             .status(400)
