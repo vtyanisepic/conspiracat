@@ -12,7 +12,7 @@ exports.signUp = async (req, res) => {
             .json({ message: 'Username and password are required' })
         }
 
-        const existingUser = await User.findOne({ username }, { password: 0, __v: 0, _id: 0 })
+        const existingUser = await User.findOne({ username })
         if (existingUser) {
             return res
             .status(400)
@@ -59,7 +59,7 @@ exports.login = async (req, res) => {
             .json({ message: 'Username and password are required' })
         }
 
-        const existingUser = await User.findOne({ username }, { password: 0, __v: 0, _id: 0 })
+        const existingUser = await User.findOne({ username })
         if (!existingUser) {
             return res
             .status(400)
@@ -101,6 +101,23 @@ exports.getUserData = async (req, res) => {
         return res
         .status(200)
         .json(user)
+    } catch (error) {
+        console.log(error.message)
+        return res
+        .status(500)
+        .json({ message: 'Something went wrong, it\'s probably on our end. Sorry!' })
+    }
+}
+
+exports.test = async (req, res) => {
+    console.log('yes')
+    try {
+        const id = req.user.id
+        await User.findOne({ _id: id }).updateOne({ '$set': { "current.test": [1, 54, "3", "hi"] } })
+        console.log('done!')
+        return res
+        .status(200)
+        .json({ message: 'Success' })
     } catch (error) {
         console.log(error.message)
         return res

@@ -75,13 +75,17 @@
             const data = await response.json()
 
             document.getElementById('level').innerText = data.level
-            document.getElementById('mettle').innerText = data.stats.mettle
-            document.getElementById('panache').innerText = data.stats.panache
-            document.getElementById('sagacity').innerText = data.stats.sagacity
+            document.getElementById('mettle').innerText = data.stats.mettle.main
+            document.getElementById('panache').innerText = data.stats.panache.main
+            document.getElementById('sagacity').innerText = data.stats.sagacity.main
             document.getElementById('hpmax').innerText = data.hp.max
             document.getElementById('hpcurr').innerText = data.hp.current
             document.getElementById('mpmax').innerText = data.mp.max
             document.getElementById('mpcurr').innerText = data.mp.current
+
+            const test = await fetch('api/user/test', {
+                method: 'POST',
+            })
         }
         window.onload = () => {
             loadInfo()
