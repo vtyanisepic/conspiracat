@@ -1,0 +1,8 @@
+{
+    "test": {
+        "message": "You embark on a thrilling adventure and return victorious!",
+        "cost": {
+            "motivtaion": 1
+        }
+    }
+}

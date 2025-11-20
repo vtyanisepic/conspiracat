@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
         },
         default: {}
     },
+    motivation: { type: Number, default: 100 },
     level: { type: Number, default: 1 },
     hp: {
         max: { type: Number, default: 0 },

@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt')
+const fs = require('fs')
 const User = require('./userModels')
 const { generateToken } = require('./token')
 
@@ -109,15 +110,24 @@ exports.getUserData = async (req, res) => {
     }
 }
 
-exports.test = async (req, res) => {
+exports.adventure = async (req, res) => {
     console.log('yes')
     try {
         const id = req.user.id
-        await User.findOne({ _id: id }).updateOne({ '$set': { "current.test": [1, 54, "3", "hi"] } })
-        console.log('done!')
-        return res
-        .status(200)
-        .json({ message: 'Success' })
+        fs.readFile('data/adventures.json', (err, data) => {
+            if (err) {
+                console.log(error.message)
+                return res
+                .status(500)
+                .json({ message: 'Something went wrong, it\'s probably on our end. Sorry!' })
+            }
+            const data2 = JSON.parse(data)
+            const { adventure } = req.body
+            return res
+            .status(200)
+            .json({ message: data2[adventure].message })
+        })
+        // const dataJson = await data.json()
     } catch (error) {
         console.log(error.message)
         return res
